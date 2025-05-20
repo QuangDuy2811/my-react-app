@@ -11,6 +11,11 @@ import Lesson from './pages/Lesson';
 import Lesson1 from './features/lesson/Lesson1';
 import Lesson2 from './features/lesson/Lesson2';
 import Lesson3 from './features/lesson/Lesson3';
+import Lesson4 from './features/lesson/lesson4';
+import Lesson5 from './features/lesson/Lesson5';
+import Lesson6 from './features/lesson/Lesson6';
+import Lesson7 from './features/lesson/Lesson7';
+import Lesson8 from './features/lesson/Lesson8';
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
@@ -58,6 +63,11 @@ const AppRoutes = () => {
             <Route path="/lesson/1" element={<Lesson1 />} />
             <Route path="/lesson/2" element={<Lesson2 />} />
             <Route path="/lesson/3" element={<Lesson3 />} />
+            <Route path="/lesson/4" element={<Lesson4 />} />
+            <Route path="/lesson/5" element={<Lesson5 />} />
+            <Route path="/lesson/6" element={<Lesson6 />} />
+            <Route path="/lesson/7" element={<Lesson7 />} />
+            <Route path="/lesson/8" element={<Lesson8 />} />
           </Route>
         </>
       ) : (
