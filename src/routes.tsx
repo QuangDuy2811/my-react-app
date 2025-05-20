@@ -8,7 +8,9 @@ import Register from './features/auth/Register';
 import ForgotPassword from './features/auth/ForgotPassword';
 import Welcome from './pages/Welcome';
 import Lesson from './pages/Lesson';
-import ExerciseDetail from './pages/ExerciseDetail';
+import Lesson1 from './features/lesson/Lesson1';
+import Lesson2 from './features/lesson/Lesson2';
+import Lesson3 from './features/lesson/Lesson3';
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
@@ -53,7 +55,9 @@ const AppRoutes = () => {
           <Route path="/welcome" element={<Welcome />} />
           <Route element={<Layout />}>
             <Route path="/lesson" element={<Lesson />} />
-            <Route path="/exercises/:id" element={<ExerciseDetail />} />
+            <Route path="/lesson/1" element={<Lesson1 />} />
+            <Route path="/lesson/2" element={<Lesson2 />} />
+            <Route path="/lesson/3" element={<Lesson3 />} />
           </Route>
         </>
       ) : (

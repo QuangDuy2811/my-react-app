@@ -1,11 +1,13 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { logout } from '../features/auth/authSlice';
-import type { AppDispatch } from '../app/store';
+import { useSelector, useDispatch } from "react-redux";
+import { selectLesson } from "../features/lesson/lessonSlice";
+import type { RootState, AppDispatch } from "../app/store";
 
 const Layout = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const selectedLesson = useSelector((state: RootState) => state.lesson.selectedLesson);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -17,7 +19,13 @@ const Layout = () => {
       {/* Header nằm ở trên */}
       <header className="flex justify-between p-2 border text-center items-center">
         <div className='pl-8'>
-          <button className='p-2 hover:bg-gray-100 rounded-md'>All lesson</button>
+          <button 
+            className='p-2 hover:bg-gray-100 rounded-md'
+            onClick={() => {
+              dispatch(selectLesson(null)); 
+              navigate(`/lesson`);
+            }} 
+            >All lesson</button>
         </div>
         <div className='font-bold'><h1>Bài thực hành react( ts required)</h1></div>
         <div>
@@ -37,7 +45,13 @@ const Layout = () => {
           {Array.from({ length: 8 }, (_, i) => (
             <button
               key={i}
-              className="font-semibold p-2 mb-2 hover:bg-gray-100 rounded-md"
+              onClick={() => {
+                dispatch(selectLesson(i));// cập nhật lesson đang chọn
+                navigate(`/lesson/${i + 1}`);
+              }}
+              className={`font-semibold p-2 mb-2 hover:bg-gray-100 rounded-md ${
+                selectedLesson === i ? "bg-green-500" : ""
+              }`}
             >
               Lesson {i + 1}
             </button>
