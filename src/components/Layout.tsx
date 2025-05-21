@@ -59,7 +59,7 @@ const Layout = () => {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 p-4 border">
+        <main className="flex-1 p-4 border overflow-x-auto">
           <Outlet />
         </main>
       </div>
