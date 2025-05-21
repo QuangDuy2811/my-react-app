@@ -20,7 +20,7 @@ const Lesson4 = () => {
         title="Thực hành validate form - onBlur"
         buttonLabel="Submit"
         disabled={Object.values(form4.errors).some((e) => e)}
-        color="blue"
+        color="gray"
       />
       <FormSection
         form={form7.form}

@@ -33,7 +33,7 @@ interface Column {
 }
 
 const DataTable: React.FC = () => {
-  const [data, setData] = useState<Product[]>([]);
+  const [data, setData] = useState<Product[]>([]);  
   const [columns, setColumns] = useState<Column[]>([
     { key: "id", label: "ID", visible: true },
     { key: "title", label: "Title", visible: true },
@@ -74,25 +74,25 @@ const DataTable: React.FC = () => {
 
 
   useEffect(() => {
-    // Load data
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("https://dummyjson.com/products");
-        setData(res.data.products);
-      } catch (err) {
-        console.error("Fetch data error:", err);
-      }
-    };
-    fetchData();
-
-    // Load columns visibility from localStorage nếu có
-    const savedCols = localStorage.getItem("visibleColumns");
-    if (savedCols) {
-      const parsed: Column[] = JSON.parse(savedCols);
-      setColumns(parsed);
-      setTempColumns(parsed);
+  const fetchData = async () => {
+    try {
+      const res = await axios.get("https://dummyjson.com/products?limit=194");
+      setData(res.data.products);
+    } catch (err) {
+      console.error("Fetch data error:", err);
     }
-  }, []);
+  };
+  fetchData();
+
+  // Load columns visibility from localStorage nếu có
+  const savedCols = localStorage.getItem("visibleColumns");
+  if (savedCols) {
+    const parsed: Column[] = JSON.parse(savedCols);
+    setColumns(parsed);
+    setTempColumns(parsed);
+  }
+}, []);
+
 
   // Mỗi lần mở dropdown => reset tempColumns bằng columns hiện tại
   useEffect(() => {
@@ -162,7 +162,7 @@ const DataTable: React.FC = () => {
       <h2 className="font-semibold mb-4">Thực hành xử lý bảng + dữ liệu (dynamic table)</h2>
 
       {/* Toggle columns */}
-      <div className="max-w-4xl w-full space-y-2 grid grid-cols-2">
+      <div className="max-w-6xl w-full space-y-2 grid grid-cols-2">
         {/* Header row */}
         <div className="flex items-center justify-between border rounded px-4 py-2 bg-gray-100">
           <span className="text-sm font-medium">Columns</span>
